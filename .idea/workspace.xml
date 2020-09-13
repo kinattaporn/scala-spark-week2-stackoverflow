@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="934719f4-0dbf-408d-8e23-930c624c56eb" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1hR1bg6muhrtUzutkGwb1BD982G" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="StackOverflow" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="stackoverflow.StackOverflow" />
+      <module name="bigdata-stackoverflow" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="stackoverflow.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.StackOverflow" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="bigdata-stackoverflow" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="scala-spark-week2-stackoverflow [file:/Users/Jan.K/scala-spark-week2-stackoverflow/]" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value="bigdata-stackoverflow-build" />
+                <option name="path" value="$PROJECT_DIR$/project" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$/build.sbt" value="3968284345" />
+        <entry key="$PROJECT_DIR$/project/MOOCSettings.scala" value="598648594" />
+        <entry key="$PROJECT_DIR$/project/StudentTasks.scala" value="2255003577" />
+        <entry key="$PROJECT_DIR$/project/build.properties" value="1396028727" />
+        <entry key="$PROJECT_DIR$/project/buildSettings.sbt" value="2649409897" />
+        <entry key="$PROJECT_DIR$/project/plugins.sbt" value="2662701361" />
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/../aims" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../scala-spark-week1-example" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../scala-spark-week1-wikipedia" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="934719f4-0dbf-408d-8e23-930c624c56eb" name="Default Changelist" comment="" />
+      <created>1599959164348</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599959164348</updated>
+    </task>
+    <servers />
+  </component>
+</project>
