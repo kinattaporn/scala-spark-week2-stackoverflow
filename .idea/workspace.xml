@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="934719f4-0dbf-408d-8e23-930c624c56eb" name="Default Changelist" comment="" />
+    <list default="true" id="934719f4-0dbf-408d-8e23-930c624c56eb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/bigdata-stackoverflow.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/bigdata-stackoverflow.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$3f14c9546052358461c8$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$3f14c9546052358461c8.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$3f14c9546052358461c8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$7caf0ac5f3a7b3ed60e9$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$7caf0ac5f3a7b3ed60e9.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$7caf0ac5f3a7b3ed60e9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$7f0862bcb9f62cb46990$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$7f0862bcb9f62cb46990.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$7f0862bcb9f62cb46990.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$9322b59ee91fa0000322$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$9322b59ee91fa0000322.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$9322b59ee91fa0000322.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$d521b0741eb742e916fb$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$d521b0741eb742e916fb.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$d521b0741eb742e916fb.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$ee4969dbaddb90aa2c1e$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$ee4969dbaddb90aa2c1e.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$ee4969dbaddb90aa2c1e.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$3406cbe37e3dc4b33728$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$3406cbe37e3dc4b33728.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$3406cbe37e3dc4b33728.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$44df50de45cf0dcb6210$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$44df50de45cf0dcb6210.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$44df50de45cf0dcb6210.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$766160ff19b344b9f361$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$766160ff19b344b9f361.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$766160ff19b344b9f361.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$836bdeaed9f0b349b365$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$836bdeaed9f0b349b365.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$836bdeaed9f0b349b365.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8df2cf91f291dc1a187f$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8df2cf91f291dc1a187f.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8df2cf91f291dc1a187f.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$90f67c24a7220e47ace4$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$90f67c24a7220e47ace4.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$90f67c24a7220e47ace4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$977531b646f8c0f75961$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$977531b646f8c0f75961.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$977531b646f8c0f75961.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$acd77bcff8e2b4fcd07f$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$acd77bcff8e2b4fcd07f.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$acd77bcff8e2b4fcd07f.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$b1434c37359a8265eb82$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$b1434c37359a8265eb82.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$b1434c37359a8265eb82.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$ed0050f4475f554c2dea$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$ed0050f4475f554c2dea.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$ed0050f4475f554c2dea.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/stackoverflow/StackOverflow.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/stackoverflow/StackOverflow.scala" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,10 +68,14 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1hR1bg6muhrtUzutkGwb1BD982G" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -26,7 +83,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/stackoverflow" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="StackOverflow" type="Application" factoryName="Application" temporary="true">
@@ -75,6 +138,7 @@
     </option>
     <option name="modificationStamps">
       <map>
+        <entry key="$PROJECT_DIR$" value="9429548676000" />
         <entry key="$PROJECT_DIR$/build.sbt" value="3968284345" />
         <entry key="$PROJECT_DIR$/project/MOOCSettings.scala" value="598648594" />
         <entry key="$PROJECT_DIR$/project/StudentTasks.scala" value="2255003577" />
@@ -115,5 +179,35 @@
       <updated>1599959164348</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1234" height="218" key="GridCell.Tab.0.bottom" timestamp="1601231148113">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1234" height="218" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1601231148113" />
+    <state width="1229" height="231" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1600305344600" />
+    <state width="1234" height="218" key="GridCell.Tab.0.center" timestamp="1601231148111">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1234" height="218" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1601231148111" />
+    <state width="1229" height="231" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1600305344599" />
+    <state width="1234" height="218" key="GridCell.Tab.0.left" timestamp="1601231148110">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1234" height="218" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1601231148110" />
+    <state width="1229" height="231" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1600305344598" />
+    <state width="1234" height="218" key="GridCell.Tab.0.right" timestamp="1601231148112">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1234" height="218" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1601231148112" />
+    <state width="1229" height="231" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1600305344600" />
+    <state x="449" y="163" width="845" height="528" key="find.popup" timestamp="1601169959347">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="449" y="163" width="845" height="528" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1601169959347" />
+    <state x="467" y="224" key="search.everywhere.popup" timestamp="1601144136124">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="467" y="224" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1601144136124" />
   </component>
 </project>

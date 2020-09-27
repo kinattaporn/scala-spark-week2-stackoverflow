@@ -6,6 +6,7 @@ import org.apache.spark.SparkContext._
 import org.apache.spark.rdd.RDD
 import annotation.tailrec
 import scala.reflect.ClassTag
+import java.util.Calendar
 
 /** A raw stackoverflow posting, either a question or an answer */
 case class Posting(postingType: Int, id: Int, acceptedAnswer: Option[Int], parentId: Option[QID], score: Int, tags: Option[String]) extends Serializable
@@ -16,21 +17,44 @@ object StackOverflow extends StackOverflow {
 
   @transient lazy val conf: SparkConf = new SparkConf().setMaster("local").setAppName("StackOverflow")
   @transient lazy val sc: SparkContext = new SparkContext(conf)
+  sc.setLogLevel("ERROR")
 
   /** Main function */
   def main(args: Array[String]): Unit = {
 
-    val lines   = sc.textFile("src/main/resources/stackoverflow/stackoverflow.csv").take(10)
-    lines.foreach(println)
-//    val raw     = rawPostings(lines)
-//    val grouped = groupedPostings(raw)
-//    val scored  = scoredPostings(grouped)
-//    val vectors = vectorPostings(scored)
-////    assert(vectors.count() == 2121822, "Incorrect number of vectors: " + vectors.count())
-//
-//    val means   = kmeans(sampleVectors(vectors), vectors, debug = true)
-//    val results = clusterResults(means, vectors)
-//    printResults(results)
+    val lines   = sc.textFile("src/main/resources/stackoverflow/stackoverflow.csv")
+    println("lines type", lines.getClass.getName)         // org.apache.spark.rdd.MapPartitionsRDD
+    lines.take(10).foreach(println)                       // 1,27233496,,,0,C#
+
+    val raw     = rawPostings(lines)
+    println("raw type", lines.getClass.getName)           // type,org.apache.spark.rdd.MapPartitionsRDD
+    raw.take(5).foreach(println)                          // Posting(1,27233496,None,None,0,Some(C#))
+    raw.take(1).foreach(x => println(x.postingType))      // 1
+    raw.take(1).foreach(x => println(x.id))               // 27233496
+
+    val grouped = groupedPostings(raw)
+    grouped.take(5).foreach(println)
+
+    val scored  = scoredPostings(grouped).sample(true, 0.001, 0)    // no .sample                                                // .sample(true, 0.001, 0) -> smallest that not error
+    scored.take(5).foreach(println)                                 // (Posting(1,13882656,None,None,-1,Some(PHP)),5)            // (Posting(1,22749348,None,None,0,Some(C++)),0)
+    println(scored.count)                                           // 2121822                                                   // 2134
+
+    val vectors = vectorPostings(scored)
+    vectors.take(5).foreach(println)                                // (100000,5) -> PHP index 2 * langSpread 50000 = 100000     // (250000,0) -> C++ index 5 * langSpread 50000 = 250000
+    println(vectors.count)                                          // 2121822                                                   // 2134
+//    assert(vectors.count() == 2121822, "Incorrect number of vectors: " + vectors.count())
+
+    println(sampleVectors(vectors).size)                            // 45
+
+    println("time-start-kmeans", Calendar.getInstance().getTime())  // 11:47:49                                                  // 11:29:19
+    val means = kmeans(sampleVectors(vectors), vectors, debug = true)
+//    println("means", means.getClass.getName)
+//    means.foreach(println)
+//    val means = Array((450000,1), (450000,10), (450000,105), (0,2), (0,2309), (0,467), (600000,7), (600000,1), (600000,0), (150000,1629), (150000,3), (150000,292), (300000,105), (300000,3), (300000,557), (50000,10271), (50000,334), (50000,2), (200000,2), (200000,99), (200000,530), (500000,176), (500000,31), (500000,3), (350000,940), (350000,2), (350000,210), (650000,2), (650000,74), (650000,15), (100000,1263), (100000,182), (100000,2), (400000,2), (400000,121), (400000,584), (550000,5), (550000,1130), (550000,66), (250000,1766), (250000,271), (250000,3), (700000,4), (700000,0), (700000,49))
+    println("time-finish-kmeans", Calendar.getInstance().getTime()) // 12:53:34                                                  // 11:35:23
+
+    val results = clusterResults(means, vectors)
+    printResults(results)
   }
 }
 
@@ -78,13 +102,33 @@ class StackOverflow extends StackOverflowInterface with Serializable {
 
   /** Group the questions and answers together */
   def groupedPostings(postings: RDD[Posting]): RDD[(QID, Iterable[(Question, Answer)])] = {
-    ???
+    val question = postings.filter(x => x.postingType == 1).map(x => (x.id, x))
+    question.take(1).foreach(println)                     // (27233496,Posting(1,27233496,None,None,0,Some(C#)))
+    println("question type", question.getClass.getName)   // org.apache.spark.rdd.MapPartitionsRDD
+    println("question count", question.count())           // 3983281
+
+    val answer = postings.filter(x => x.postingType == 2).map(x => (x.parentId.get, x))
+    answer.take(1).foreach(println)                       // (5484340,Posting(2,5494879,None,Some(5484340),1,None))
+    println("answer type", answer.getClass.getName)       // org.apache.spark.rdd.MapPartitionsRDD
+    println("answer count", answer.count())               // 4160520
+
+    val qa = question.join(answer)
+    qa.take(1).foreach(println)                           // (18583638,(Posting(1,18583638,None,None,-1,Some(Objective-C)),Posting(2,18583768,None,Some(18583638),1,None)))
+    println("qa count", qa.count())                       // 4160520
+
+    qa.groupByKey()                                       // (13882656,CompactBuffer(
+                                                          //            (Posting(1,13882656,None,None,-1,Some(PHP)),Posting(2,13882679,None,Some(13882656),2,None)),
+                                                          //            (Posting(1,13882656,None,None,-1,Some(PHP)),Posting(2,13882685,None,Some(13882656),2,None)),
+                                                          //            (Posting(1,13882656,None,None,-1,Some(PHP)),Posting(2,13882687,None,Some(13882656),5,None)),
+                                                          //            (Posting(1,13882656,None,None,-1,Some(PHP)),Posting(2,13882700,None,Some(13882656),0,None)),
+                                                          //            (Posting(1,13882656,None,None,-1,Some(PHP)),Posting(2,13882735,None,Some(13882656),0,None)),
+                                                          //            (Posting(1,13882656,None,None,-1,Some(PHP)),Posting(2,13884757,None,Some(13882656),0,None))
+                                                          // ))
   }
 
 
   /** Compute the maximum score for each posting */
   def scoredPostings(grouped: RDD[(QID, Iterable[(Question, Answer)])]): RDD[(Question, HighScore)] = {
-
     def answerHighScore(as: Array[Answer]): HighScore = {
       var highScore = 0
           var i = 0
@@ -96,8 +140,7 @@ class StackOverflow extends StackOverflowInterface with Serializable {
           }
       highScore
     }
-
-    ???
+    grouped.map(x => (x._2.toList(0)._1, answerHighScore(x._2.map(y => y._2).toArray)))
   }
 
 
@@ -116,8 +159,7 @@ class StackOverflow extends StackOverflowInterface with Serializable {
         }
       }
     }
-
-    ???
+    scored.map(x => (firstLangInTag(x._1.tags, langs).get * langSpread, x._2)).cache()
   }
 
 
@@ -172,18 +214,38 @@ class StackOverflow extends StackOverflowInterface with Serializable {
 
   /** Main kmeans computation */
   @tailrec final def kmeans(means: Array[(Int, Int)], vectors: RDD[(Int, Int)], iter: Int = 1, debug: Boolean = false): Array[(Int, Int)] = {
-    val newMeans = means.clone() // you need to compute newMeans
+//    val newMeans = means.clone() // you need to compute newMeans
+
+    if (iter == 1) println("----- kmeans-means", means.length)                         // (----- kmeans-means,45)
+    if (iter == 1) means.take(5).foreach(println)                                      // (450000,1)
+    if (iter == 1) means.indices.take(5).foreach(println)                              // 0 -> 1 -> 2 -> 3 -> 4 -> ...
+    val closest = vectors.map(p => (findClosest(p, means), p))
+    if (iter == 1) println("----- kmeans-closest", closest.count())                    // (----- kmeans-closest,2134)
+    if (iter == 1) closest.take(5).foreach(println)                                    // (30,(100000,1))
+    val closestGrouped = closest.groupByKey()
+    if (iter == 1) println("----- kmeans-closestGrouped", closestGrouped.count())      // ----- kmeans-closestGrouped,38)
+    if (iter == 1) closestGrouped.take(5).foreach(println)                             // (30,CompactBuffer((100000,1), (100000,1), ...))
+
+    val avg = closestGrouped.mapValues(averageVectors)
+    if (iter == 1) println("----- kmeans-avg", avg.count())                            // (----- kmeans-avg,38)
+    if (iter == 1) avg.foreach(println)                                                // (30,(100000,0))
+    val avgMap = avg.collectAsMap()
+    if (iter == 1) println("----- kmeans-avgMap", avgMap.size)                         // (----- kmeans-avgMap,38)
+    if (iter == 1) avgMap.foreach(println)                                             // (30,(100000,0))
+    val newMeans = means.indices.map(i => avgMap.getOrElse(i, means(i))).toArray
+    if (iter == 1) println("----- kmeans-newMeans", newMeans.length)                   // (----- kmeans-newMeans,45)
+    if (iter == 1) newMeans.take(5).foreach(println)                                   // (450000,3)
 
     // TODO: Fill in the newMeans array
     val distance = euclideanDistance(means, newMeans)
 
     if (debug) {
-      println(s"""Iteration: $iter
-                 |  * current distance: $distance
-                 |  * desired distance: $kmeansEta
-                 |  * means:""".stripMargin)
+      println(s"Iteration: $iter")
+      if (iter == 1) println(s"""  * current distance: $distance
+                                |  * desired distance: $kmeansEta
+                                |  * means:""".stripMargin)
       for (idx <- 0 until kmeansKernels)
-      println(f"   ${means(idx).toString}%20s ==> ${newMeans(idx).toString}%20s  " +
+        if (iter == 1) println(f"   ${means(idx).toString}%20s ==> ${newMeans(idx).toString}%20s  " +
               f"  distance: ${euclideanDistance(means(idx), newMeans(idx))}%8.0f")
     }
 
@@ -198,8 +260,6 @@ class StackOverflow extends StackOverflowInterface with Serializable {
       newMeans
     }
   }
-
-
 
 
   //
@@ -263,23 +323,46 @@ class StackOverflow extends StackOverflowInterface with Serializable {
   }
 
 
-
-
   //
   //
   //  Displaying results:
   //
   //
   def clusterResults(means: Array[(Int, Int)], vectors: RDD[(LangIndex, HighScore)]): Array[(String, Double, Int, Int)] = {
+                                                                                      // no .sample                                   // .sample(true, 0.001, 0) -> smallest that not error
+    println("----- clusterResults-means", means.length)                               // (----- clusterResults-means,45)              // (----- clusterResults-means,45)
+    means.take(5).foreach(println)                                                    // (450000,1)                                   // (450000,1)
+    means.indices.take(5).foreach(println)                                            // 0 -> 1 -> 2 -> 3 -> 4 -> ...                 // 0 -> 1 -> 2 -> 3 -> 4 -> ...
     val closest = vectors.map(p => (findClosest(p, means), p))
+    println("----- clusterResults-closest", closest.count())                          // (----- clusterResults-closest,2121822)       // (----- clusterResults-closest,2134)
+    closest.take(5).foreach(println)                                                  // (10,(150000,0))                              // (41,(250000,0))
     val closestGrouped = closest.groupByKey()
+    println("----- clusterResults-closestGrouped", closestGrouped.count())                                                            // (----- clusterResults-closestGrouped,26)
+    closestGrouped.foreach(println)                                                                                                   // (6,CompactBuffer((600000,5), (600000,10), (600000,11), (600000,4)))
 
     val median = closestGrouped.mapValues { vs =>
-      val langLabel: String   = ??? // most common language in the cluster
-      val langPercent: Double = ??? // percent of the questions in the most common language
-      val clusterSize: Int    = ???
-      val medianScore: Int    = ???
+      val groupByIndex = vs.groupBy(_._1)                                             // Map(0 -> List((0,289), (0,255), ...)         // Map(600000 -> List((600000,5), (600000,10), (600000,11), (600000,4)))
+      val groupByIndexSize = groupByIndex.mapValues(_.size)                           // Map(0 -> 431)                                // Map(600000 -> 4)
+      val groupByIndexSizeMax = groupByIndexSize.maxBy(_._2)                          // (0,431)                                      // (600000,4)
 
+      val langLabel: String   = langs(groupByIndexSizeMax._1  / langSpread)           // JavaScript -> 0 = 0/50000                    // MATLAB -> 12 = 600000/50000   // most common language in the cluster
+      val langPercent: Double = groupByIndexSizeMax._2 * 100.0 / vs.size.toDouble     // 100.0 -> 431*100/431                         // 100.0 -> 4*100/4              // percent of the questions in the most common language
+      val clusterSize: Int    = vs.size                                               // 431                                          // 4
+
+      val allScores = vs.map(_._2).toList.sorted                                      // List(235, 235, ...)                          // List(4, 5, 10, 11)
+      val medianScore: Int    = allScores.size%2 match {                              // 431/2 = 215                                  // 4/2 = 2
+        case 1 => allScores(allScores.size/2)                                         // allScores(215) = 377                         // NA
+        case _ => (allScores(allScores.size/2) + allScores(allScores.size/2 -1))/2    // NA                                           // (allScores(2) + allScores(1))/2 = (10 + 5)/2 = 7
+      }
+      println(s"""-----
+                  |  $groupByIndex
+                  |  $groupByIndexSize
+                  |  $groupByIndexSizeMax
+                  |  $langLabel
+                  |  $langPercent
+                  |  $clusterSize
+                  |  $allScores
+                  |  $medianScore""".stripMargin)
       (langLabel, langPercent, clusterSize, medianScore)
     }
 
